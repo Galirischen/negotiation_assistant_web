@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资金商务谈判助手 - 项目文档 v0.2.0</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #1a1a1a;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.3em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 2em;
+            color: #2c3e50;
+            border-bottom: 2px solid #e1e4e8;
+            padding-bottom: 0.3em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            font-size: 1.5em;
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 1.25em;
+            color: #5a6c7d;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+        ul, ol {
+            margin-bottom: 16px;
+            padding-left: 2.5em;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        code {
+            background: #f1f3f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Consolas", monospace;
+            font-size: 90%;
+            color: #e83e8c;
+        }
+        pre {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+            color: #abb2bf;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            padding: 12px;
+            text-align: left;
+        }
+        table td {
+            border: 1px solid #e1e4e8;
+            padding: 10px;
+        }
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        table tr:hover {
+            background: #e9ecef;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            color: #6a737d;
+            margin: 20px 0;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 4px;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e1e4e8;
+            margin: 40px 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 30px;
+        }
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e1e4e8;
+            text-align: center;
+            color: #6a737d;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #667eea;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            table {
+                font-size: 14px;
+            }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+        strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="_1">资金商务谈判助手 🤝</h1>
+<blockquote>
+<p>基于MCP的AI谈判支持系统 - 让每一次外勤都成为数字资产，让每一次博弈都有数智最优解</p>
+</blockquote>
+<p><a href="https://github.com/Galirischen/negotiation_assistant_web"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-Repository-blue?logo=github" /></a>
+<a href="http://localhost:5173"><img alt="Demo" src="https://img.shields.io/badge/Demo-Online-success?logo=react" /></a>
+<a href="https://github.com/Galirischen/negotiation_assistant_web/releases"><img alt="Version" src="https://img.shields.io/badge/version-v0.2.0-orange" /></a></p>
+<hr />
+<h2 id="_2">📌 目录</h2>
+<ul>
+<li><a href="#项目背景与痛点">项目背景与痛点</a></li>
+<li><a href="#目标价值">目标价值</a></li>
+<li><a href="#整体思路">整体思路</a></li>
+<li><a href="#实施过程">实施过程</a></li>
+<li><a href="#效果预估">效果预估</a></li>
+<li><a href="#典型应用场景">典型应用场景</a></li>
+<li><a href="#总结反思">总结反思</a></li>
+<li><a href="#快速启动">快速启动</a></li>
+<li><a href="#核心功能">核心功能</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#技术栈">技术栈</a></li>
+<li><a href="#api文档">API文档</a></li>
+</ul>
+<hr />
+<h2 id="_3">🎯 项目背景与痛点</h2>
+<h3 id="_4">一、员工层面的挑战</h3>
+<h4 id="1-">1. <strong>信息差 - 现场被"数据攻击"无法应对</strong></h4>
+<p><strong>痛点场景</strong>:
+- 商务谈判现场,对方抛出复杂数据(如"你们的年化终损达到xx%,高于同业均值2个点")
+- 无法即时校验数据真实性和合理性
+- 临时计算困难,容易被对方数据"带节奏"
+- 缺少历史数据支撑,错失反驳机会</p>
+<p><strong>影响</strong>:
+- 谈判主动权被动
+- 商务条件被迫让步
+- 事后发现被"忽悠",但为时已晚</p>
+<h4 id="2-">2. <strong>临场应变 - 高压环境下的心理博弈</strong></h4>
+<p><strong>痛点场景</strong>:
+- 对方突然以"合规施压"(如"你们这个模式有监管风险")
+- 遇到从未见过的刁钻问题或新型要求
+- 情绪波动导致表达不清晰或过度承诺
+- 缺乏标准化话术,每次都靠临场发挥</p>
+<p><strong>影响</strong>:
+- 压力巨大,影响当场反馈结果的质量
+- 谈判质量不稳定,结果随机性大
+- 新人成长周期长(3-6个月才能独立谈判)</p>
+<h4 id="3-">3. <strong>手工处理 - 低效的会前会后工作</strong></h4>
+<p><strong>痛点场景</strong>:
+- 每次拜访前需手动拉取资方数据(在贷余额、通过率、成本等)
+- 准备一份背景会议单耗时0.5-1小时
+- 会后整理纪要、提取关键信息又是1小时
+- 数据散落在多个系统(Dataphin、线下手工表、协议管理系统)</p>
+<p><strong>影响</strong>:
+- 商务时间消耗在数据准备而非谈判本身
+- 紧急会议准备不充分,影响谈判效果
+- 重复劳动,缺乏沉淀</p>
+<h4 id="4-">4. <strong>领导参会 - 需帮助领导快速熟悉资方细节</strong></h4>
+<p><strong>痛点场景</strong>:
+- 重要拜访时VP或部门负责人参会
+- 领导层对资方的历史数据、运营状况不熟悉
+- 现场需要商务人员补充背景信息
+- 影响专业形象和谈判节奏</p>
+<p><strong>影响</strong>:
+- 错失关键谈判机会
+- 领导决策缺乏数据支持
+- 团队专业度打折扣</p>
+<hr />
+<h3 id="_5">二、管理层面的困境</h3>
+<h4 id="1-_1">1. <strong>经验黑盒 - 核心知识的流失风险</strong></h4>
+<p><strong>痛点场景</strong>:
+- 顶尖商务的谈判技巧和经验只存在于个人脑中
+- 缺少系统化的知识管理和传承机制
+- 关键人员离职,公司智力资产流失
+- 新人只能通过"师傅带徒弟"的低效方式学习</p>
+<p><strong>影响</strong>:
+- 组织能力脆弱,过度依赖个人
+- 培训成本高,周期长
+- 无法规模化复制优秀经验</p>
+<h4 id="2-_1">2. <strong>过程管理 - 谈判及拜访"黑箱"难以监控</strong></h4>
+<p><strong>痛点场景</strong>:
+- 外出拜访、谈判占商务工作50%,但效率和质量难以掌握
+- 领导只能看到最终商务条件、签约结果
+- 不知道过程中放弃了哪些原本可以坚持的条件
+- 缺少标准化的谈判SOP和评估机制</p>
+<p><strong>影响</strong>:
+- 无法识别低效谈判行为
+- 丢失优化空间,成本浪费
+- 团队能力提升缓慢</p>
+<h4 id="3-_1">3. <strong>结果评估 - 无法判断"最优解"</strong></h4>
+<p><strong>痛点场景</strong>:
+- 谈判结束后,不知道结果是否是最优解
+- 缺少对标基准(同类资方的市场行情)
+- 很少进行系统性复盘和经验总结
+- 重复犯错,缺少闭环改进</p>
+<p><strong>影响</strong>:
+- 错失更优商务条件
+- 资金成本优化空间被浪费
+- 组织学习能力弱</p>
+<h4 id="4-_1">4. <strong>资方画像缺失 - 战略资产未沉淀</strong></h4>
+<p><strong>痛点场景</strong>:
+- 缺少对资方谈判偏好的系统分析
+- 不知道哪些机构看重合规、哪些对价格敏感
+- 每次谈判都是"重新开始",无法利用历史经验
+- 无法预测资方风险政策调整趋势</p>
+<p><strong>影响</strong>:
+- 谈判策略盲目,命中率低
+- 战略合作决策缺乏支持
+- 珍贵的对手画像资产流失</p>
+<hr />
+<h2 id="_6">🎁 目标价值</h2>
+<h3 id="_7">一、量化改进目标</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>改进前</th>
+<th>改进后</th>
+<th>提升幅度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数据准备时长</strong></td>
+<td>2小时/次</td>
+<td>3-5分钟</td>
+<td><strong>96%效率提升</strong></td>
+</tr>
+<tr>
+<td><strong>数据调取速度</strong></td>
+<td>跨系统手动查询</td>
+<td>秒级响应</td>
+<td><strong>实时化</strong></td>
+</tr>
+<tr>
+<td><strong>新人培训周期</strong></td>
+<td>3-6个月</td>
+<td>1-2个月</td>
+<td><strong>50-66%缩短</strong></td>
+</tr>
+<tr>
+<td><strong>谈判复盘频率</strong></td>
+<td>0次/年</td>
+<td>12-4次/年</td>
+<td><strong>从无到有</strong></td>
+</tr>
+<tr>
+<td><strong>话术标准化</strong></td>
+<td>依赖个人发挥</td>
+<td>系统化话术库</td>
+<td><strong>可复制</strong></td>
+</tr>
+<tr>
+<td><strong>领导参会效率</strong></td>
+<td>需现场补充背景</td>
+<td>提前同步完整档案</td>
+<td><strong>决策质量提升</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">二、核心价值主张</h3>
+<h4 id="1-_2">1. <strong>实时智能支持 - 让每个商务都趋近专业高手</strong></h4>
+<ul>
+<li>🎙️ <strong>实时谈判模式</strong>: 监听对方发言,秒级推荐应对话术</li>
+<li>💬 <strong>话术智能匹配</strong>: 800+场景话术库,自动匹配最佳应对</li>
+<li>📊 <strong>数据即时校验</strong>: 对方抛出数据时,系统自动计算验证</li>
+<li>🛡️ <strong>合规风险预警</strong>: 对方提出不合规要求时,立即提醒红线</li>
+</ul>
+<p><strong>价值</strong>: 新人也能应对复杂谈判,团队整体战斗力提升</p>
+<h4 id="2-_2">2. <strong>资方内参系统 - 知己知彼,百战不殆</strong></h4>
+<ul>
+<li>📈 <strong>业务数据实时</strong>: 在贷余额、放款规模、排期情况(Dataphin直连)</li>
+<li>📊 <strong>运营数据透明</strong>: 通过率、审批时长、保证金退回时效</li>
+<li>💰 <strong>商务条件对比</strong>: 资金成本、保证金比例、同品类对标</li>
+<li>👔 <strong>关键联系人档案</strong>: 分管领导、部门负责人、商务对接人</li>
+<li>🧠 <strong>谈判偏好画像</strong>: 机构风格分析(合规导向/价格敏感/效率优先)</li>
+</ul>
+<p><strong>价值</strong>: 3分钟生成完整资方档案,领导参会也能"了如指掌"</p>
+<h4 id="3-_2">3. <strong>知识资产沉淀 - 从个人能力到组织能力</strong></h4>
+<ul>
+<li>📚 <strong>谈判经验固化</strong>: 顶尖商务的话术和策略系统化</li>
+<li>🔄 <strong>持续学习迭代</strong>: 每次谈判记录自动沉淀,话术库持续优化</li>
+<li>🎓 <strong>新人快速成长</strong>: 从"3-6个月实践出真知"到"1-2个月体系化培训"</li>
+<li>🔒 <strong>降低人员风险</strong>: 核心知识不再流失</li>
+</ul>
+<p><strong>价值</strong>: 组织能力可积累、可复制、可传承</p>
+<h4 id="4-_2">4. <strong>过程管理可视化 - 让谈判不再是"黑箱"</strong></h4>
+<ul>
+<li>📝 <strong>谈判全程记录</strong>: 自动生成会议纪要和关键决策点</li>
+<li>📊 <strong>复盘报告生成</strong>: 1个月/3个月周期复盘,识别改进空间</li>
+<li>🎯 <strong>结果评估对标</strong>: 对比市场行情,评估谈判最优性</li>
+<li>📈 <strong>团队能力诊断</strong>: 识别高效/低效谈判行为</li>
+</ul>
+<p><strong>价值</strong>: 管理层掌握过程,优化决策,持续改进</p>
+<h4 id="5-">5. <strong>管理层数据分析 - 从经验管理到数据驱动</strong></h4>
+<ul>
+<li>📊 <strong>外勤效率统计</strong>: 自动记录每次谈判/拜访的时间、资方、场景、结果</li>
+<li>📈 <strong>员工业绩分析</strong>:</li>
+<li>谈判成功率(按员工/资方类型/场景维度)</li>
+<li>商务条件优化幅度(资金成本降低、保证金比例优化)</li>
+<li>平均谈判周期(从接触到签约)</li>
+<li>🎯 <strong>团队能力画像</strong>:</li>
+<li>识别高效商务的行为模式</li>
+<li>发现低效环节和改进空间</li>
+<li>新人成长曲线追踪</li>
+<li>📋 <strong>管理决策支持</strong>:</li>
+<li>资方合作健康度评估(哪些资方值得深耕)</li>
+<li>商务资源分配优化(重点资方配置资深商务)</li>
+<li>培训需求识别(哪些场景需要加强)</li>
+</ul>
+<p><strong>价值</strong>: 从"拍脑袋"到数据驱动,提升团队整体效能</p>
+<hr />
+<h2 id="_9">💡 整体思路</h2>
+<h3 id="_10">一、设计理念</h3>
+<pre class="codehilite"><code>传统模式: 人工经验 + 临场发挥 + 事后补救
+         ↓
+AI增强模式: 数据支撑 + 实时辅助 + 系统沉淀
+</code></pre>
+
+<h3 id="_11">二、四大核心能力</h3>
+<h4 id="1-real-time-negotiation-assistant">1. <strong>实时谈判支持</strong> (Real-time Negotiation Assistant)</h4>
+<pre class="codehilite"><code>对方发言 → 语音/文字识别 → 场景匹配 → 话术推荐 → 实时弹窗
+                                    ↓
+                              数据校验 + 风险预警
+</code></pre>
+
+<p><strong>关键技术</strong>:
+- 语音识别(ASR) + 自然语言理解(NLU)
+- 话术匹配引擎(基于关键词+语义相似度)
+- 实时弹窗提示(非侵入式UI)</p>
+<h4 id="2-funder-intelligence-report">2. <strong>资方内参系统</strong> (Funder Intelligence Report)</h4>
+<pre class="codehilite"><code>资方名称 → Dataphin查询 → 数据聚合 → 智能分析 → 内参报告
+             (MCP协议)      ↓            ↓
+                     CRM联系人   谈判建议生成
+</code></pre>
+
+<p><strong>数据维度</strong>:
+- ✅ 合作状态(正常/暂停/终止)
+- ✅ 业务数据(在贷余额、放款规模、本月排期)
+- ✅ 运营数据(通过率、审批时长)
+- ✅ 商务条件(资金成本、保证金、合作模式)
+- ✅ 关键联系人(分管领导、部门负责人、商务对接人)
+- 🚧 谈判偏好画像(待积累)</p>
+<h4 id="3-playbook-system">3. <strong>话术知识库</strong> (Playbook System)</h4>
+<pre class="codehilite"><code>场景分类 → 标准话术 → 使用技巧 → 成功案例 → 持续优化
+   ↓
+(价格谈判、风险质疑、合规施压...)
+</code></pre>
+
+<p><strong>话术库结构</strong>:
+- 🏷️ <strong>场景标签</strong>: 价格谈判、风险质疑、合规施压、业务量承诺...
+- 💬 <strong>标准话术</strong>: 经过验证的高效表达
+- 💡 <strong>使用技巧</strong>: 何时用、如何用、注意事项
+- 📊 <strong>数据支撑</strong>: 话术涉及的关键数据引用
+- ⚠️ <strong>风险提示</strong>: 避免踩坑的提醒</p>
+<h4 id="4-post-negotiation-analysis">4. <strong>复盘分析系统</strong> (Post-negotiation Analysis)</h4>
+<pre class="codehilite"><code>谈判记录 → 关键决策提取 → 结果对标 → 改进建议 → 知识沉淀
+              ↓                ↓
+        条件让步分析    市场行情对比
+</code></pre>
+
+<p><strong>输出内容</strong>:
+- 📝 会议纪要(自动生成)
+- 🎯 关键决策点回顾
+- 📊 结果评估(vs市场行情)
+- 💡 改进建议
+- 📚 经验沉淀(更新话术库)</p>
+<hr />
+<h2 id="_12">🏗️ 实施过程</h2>
+<h3 id="phase-1-web">Phase 1: Web化改造与权限体系 ✅</h3>
+<p><strong>目标</strong>: 将CLI工具转换为Web应用，建立完整的权限管理体系</p>
+<p><strong>实施内容</strong>:
+- ✅ <strong>前端架构搭建</strong>
+  - React 18 + Vite构建现代化单页应用
+  - React Router实现页面路由
+  - Context API管理全局状态
+  - 统一的UI设计系统和样式规范</p>
+<ul>
+<li>✅ <strong>后端API开发</strong></li>
+<li>FastAPI框架构建RESTful API</li>
+<li>Pydantic模型进行数据验证</li>
+<li>JWT Token实现无状态认证</li>
+<li>
+<p>CORS配置支持跨域请求</p>
+</li>
+<li>
+<p>✅ <strong>权限管理系统</strong></p>
+</li>
+<li>三级角色体系: 商务 &lt; 组长 &lt; 部门负责人</li>
+<li>基于角色的数据隔离机制</li>
+<li>权限守卫组件保护敏感页面</li>
+<li>
+<p>Token自动刷新和过期处理</p>
+</li>
+<li>
+<p>✅ <strong>核心功能页面</strong></p>
+</li>
+<li>战前准备: 资方内参报告 + 话术知识库</li>
+<li>战中辅助: 实时对话记录 + 话术推荐</li>
+<li>战后复盘: 谈判记录管理 + 待办追踪</li>
+<li>团队看板: 效能分析 + 成员业绩</li>
+</ul>
+<p><strong>技术亮点</strong>:
+- 组件化设计，代码复用率高
+- 响应式布局，适配不同屏幕
+- 权限系统灵活可扩展
+- Demo数据完整，可独立演示</p>
+<h3 id="phase-2">Phase 2: 数据集成与持久化 🚧</h3>
+<p><strong>目标</strong>: 接入真实数据源，实现数据持久化存储</p>
+<p><strong>计划内容</strong>:
+- [ ] <strong>Dataphin数据源接入</strong>
+  - 通过MCP协议连接Dataphin
+  - 实时查询资方业务数据
+  - 数据缓存机制优化性能
+  - 数据更新频率配置</p>
+<ul>
+<li>[ ] <strong>数据库集成</strong></li>
+<li>PostgreSQL作为主数据库</li>
+<li>谈判记录、待办事项持久化</li>
+<li>用户权限数据管理</li>
+<li>
+<p>数据备份和恢复机制</p>
+</li>
+<li>
+<p>[ ] <strong>历史数据迁移</strong></p>
+</li>
+<li>CLI版本数据导入工具</li>
+<li>数据格式转换和清洗</li>
+<li>数据完整性校验</li>
+<li>增量同步机制</li>
+</ul>
+<h3 id="phase-3">Phase 3: 智能化增强 🚧</h3>
+<p><strong>目标</strong>: 提升AI辅助能力，优化用户体验</p>
+<p><strong>计划内容</strong>:
+- [ ] <strong>实时通信优化</strong>
+  - WebSocket实现双向通信
+  - 实时话术推荐延迟&lt;500ms
+  - 多人协同谈判支持
+  - 消息队列处理高并发</p>
+<ul>
+<li>[ ] <strong>语音功能集成</strong></li>
+<li>接入ASR语音识别服务</li>
+<li>实时语音转文字</li>
+<li>支持多种音频格式</li>
+<li>
+<p>噪音过滤和优化</p>
+</li>
+<li>
+<p>[ ] <strong>话术推荐算法</strong></p>
+</li>
+<li>基于语义相似度的匹配</li>
+<li>上下文感知的推荐</li>
+<li>用户反馈学习机制</li>
+<li>A/B测试优化效果</li>
+</ul>
+<h3 id="phase-4">Phase 4: 企业系统集成 🔮</h3>
+<p><strong>目标</strong>: 打通业务闭环，实现全流程数字化</p>
+<p><strong>计划内容</strong>:
+- [ ] <strong>BPM工单系统集成</strong>
+  - 战后复盘一键触发协议审批流程
+  - 自动创建跟进工单和任务
+  - 审批状态实时同步到谈判记录
+  - 协议签署流程自动化</p>
+<ul>
+<li>[ ] <strong>CRM系统打通</strong></li>
+<li>资方特性标签自动提取和沉淀</li>
+<li>谈判历史与CRM客户档案联动</li>
+<li>资方画像数据资产化（偏好分析、风险等级、合作潜力）</li>
+<li>
+<p>客户生命周期管理集成</p>
+</li>
+<li>
+<p>[ ] <strong>业务流程自动化</strong></p>
+</li>
+<li>谈判结果自动同步到业务系统</li>
+<li>待办事项与OA系统集成</li>
+<li>数据双向同步机制</li>
+<li>跨系统数据一致性保障</li>
+</ul>
+<p><strong>价值</strong>: 从谈判到签约全流程数字化，沉淀可复用的资方数据资产</p>
+<hr />
+<h2 id="_13">📊 效果预估</h2>
+<h3 id="_14">一、效率提升</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前状态</th>
+<th>预期目标</th>
+<th>提升幅度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>会前准备时长</strong></td>
+<td>2小时</td>
+<td>5分钟</td>
+<td><strong>96%</strong></td>
+</tr>
+<tr>
+<td><strong>数据查询速度</strong></td>
+<td>跨系统手动</td>
+<td>秒级响应</td>
+<td><strong>实时化</strong></td>
+</tr>
+<tr>
+<td><strong>会后整理时长</strong></td>
+<td>1小时</td>
+<td>10分钟</td>
+<td><strong>83%</strong></td>
+</tr>
+<tr>
+<td><strong>新人培训周期</strong></td>
+<td>3-6个月</td>
+<td>1-2个月</td>
+<td><strong>50-66%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_15">二、质量改善</h3>
+<ul>
+<li><strong>谈判成功率</strong>: 从60%提升至75%（预估）</li>
+<li><strong>商务条件优化</strong>: 平均资金成本降低0.3-0.5个百分点</li>
+<li><strong>决策准确性</strong>: 数据支撑减少主观判断失误</li>
+<li><strong>合规风险</strong>: 实时预警避免踩红线</li>
+</ul>
+<h3 id="_16">三、管理价值</h3>
+<ul>
+<li><strong>过程可视化</strong>: 100%谈判过程可追溯</li>
+<li><strong>知识沉淀</strong>: 每年积累200+场谈判经验</li>
+<li><strong>团队能力</strong>: 标准化培训体系建立</li>
+<li><strong>战略决策</strong>: 数据驱动的资方合作策略</li>
+</ul>
+<h3 id="_17">四、长期收益</h3>
+<ul>
+<li><strong>组织能力</strong>: 从依赖个人到系统化能力</li>
+<li><strong>数据资产</strong>: 资方画像库持续增值</li>
+<li><strong>竞争优势</strong>: 专业度和效率领先同业</li>
+<li><strong>成本节约</strong>: 年度资金成本优化预计节省数百万</li>
+</ul>
+<hr />
+<h2 id="_18">💼 典型应用场景</h2>
+<h3 id="-">真实案例: 股东变更应对 - 中关村银行保证金谈判</h3>
+<p><strong>业务背景</strong>:
+- <strong>时间</strong>: 2026年1月
+- <strong>事件</strong>: 公司股东变更,第一大股东分众传媒退出
+- <strong>影响</strong>: 中关村银行评审委员会要求将保证金比例从1%提升至3-5%
+- <strong>压力</strong>: 若接受3%将新增保证金5540万,严重影响资金效率和现金流</p>
+<p><strong>传统方式的困境</strong>:
+- ❌ 准备资料需2小时: 手动查询Dataphin、整理历史数据、准备谈判策略
+- ❌ 应对话术靠经验: 新商务缺乏应对股东变更质疑的标准话术
+- ❌ 数据支撑不足: 现场需要的资产质量数据难以快速查询
+- ❌ 方案设计耗时: 保证金替代方案需要临时构思,容易遗漏</p>
+<p><strong>使用工具后的全流程</strong>:</p>
+<h4 id="1-5">1️⃣ 战前准备 - 5分钟生成完整策略</h4>
+<p><strong>输入场景</strong>: "中关村银行因股东变更要求提升保证金比例"</p>
+<p><strong>系统输出</strong>:</p>
+<p>✅ <strong>应对股东变更质疑的话术</strong></p>
+<pre class="codehilite"><code>&quot;理解您的关切。此次股东变更是战略调整的一部分:
+• 分众传媒作为财务投资人阶段性退出,这是正常的资本运作
+• 股权变更由管理层主动回购,更加坚定助贷业务发展
+• 管理层持股65%且保持稳定,决策效率更高
+• 公司运营指标正常,监管部门已完成备案审查&quot;
+</code></pre>
+
+<p>✅ <strong>三套保证金替代方案</strong>
+- <strong>方案A</strong>: 渐进式调整(前3月2%,后续视表现恢复1%)
+- <strong>方案B</strong>: 存款支持(维持1%+3000万专户存款)  ⭐推荐
+- <strong>方案C</strong>: 业务量置换(2%保证金+授信额度提升5亿)</p>
+<p>✅ <strong>数据支撑材料清单</strong>
+- 2025年Q4资产质量改善数据
+- 风控措施优化方案
+- 股东变更声明文件
+- 2026年Q1业务计划</p>
+<hr />
+<h4 id="2-_3">2️⃣ 资方内参 - 秒级查询关键数据</h4>
+<p><strong>输入</strong>: "查询中关村银行情报"</p>
+<p><strong>系统输出</strong>:</p>
+<p>📊 <strong>业务数据</strong>
+- 在贷余额: 27.7亿元(额度使用率92.3%,接近瓶颈)
+- 放款量趋势: 近期出现下滑,需关注</p>
+<p>📈 <strong>资产质量表现</strong>
+- 首逾FPD15+: 1.09% → 0.90% ✅改善明显
+- M1 30+回收率: 80.4% ✅回升趋势
+- 入催率: 8.74% → 7.55% ✅优化显著</p>
+<p>💡 <strong>谈判策略建议</strong>
+- 用"改善趋势"对冲"短逾风险"
+- 用"提额需求"置换"保证金压力"
+- 建立"透明沟通机制"增强信任</p>
+<hr />
+<h4 id="3-_3">3️⃣ 战中辅助 - 实时话术推荐</h4>
+<p><strong>对方质疑</strong>: "你们最近发生股东变更,是不是公司经营出现了重大问题?"</p>
+<p><strong>系统推荐</strong> (0.5秒响应):</p>
+<pre class="codehilite"><code>✅ 推荐话术: 透明化沟通 + 数据支撑
+💡 技巧: 不回避问题,用&quot;管理层主动回购&quot;定性,强化信心
+⚠️ 风险提示: 避免含糊其辞,会加重对方疑虑
+</code></pre>
+
+<p><strong>对方施压</strong>: "评审委员会要求保证金提升到3-5%"</p>
+<p><strong>系统推荐</strong>:</p>
+<pre class="codehilite"><code>✅ 推荐方案B: 存款支持方案
+  • 维持保证金1%不变
+  • 额外提供3000万存款支持(存入代偿账户)
+  • 1-2个月后根据资产表现释放
+  • 优势: 灵活可逆,双方都能接受
+
+💡 话术要点:
+  • 量化3%保证金的影响(新增5540万)
+  • 强调存款支持的灵活性和可逆性
+  • 明确释放条件(首逾&lt;1%,回收率&gt;80%)
+</code></pre>
+
+<hr />
+<h4 id="4-_3">4️⃣ 战后复盘 - 经验沉淀</h4>
+<p><strong>谈判结果</strong>:
+- ✅ 避免保证金从1%直接提升至3%(节省5540万占用)
+- ✅ 采用3000万存款支持方案(1-2个月可释放)
+- ✅ 建立透明沟通机制(每月报告+每两周会议)
+- ✅ 保持业务合作可持续性</p>
+<p><strong>系统自动记录</strong>:
+- 🎯 成功话术: "存款支持方案"被标记为高效话术
+- 📊 关键数据: 对方对"改善趋势"敏感度高于"绝对值"
+- 💡 经验沉淀: 股东变更应对策略更新到知识库
+- 🔄 持续优化: 下次遇到类似场景可直接调用</p>
+<hr />
+<h3 id="_19">价值量化</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>传统方式</th>
+<th>使用工具后</th>
+<th>提升</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>准备时长</strong></td>
+<td>2小时</td>
+<td>5分钟</td>
+<td><strong>96%</strong></td>
+</tr>
+<tr>
+<td><strong>数据查询</strong></td>
+<td>30分钟</td>
+<td>5秒</td>
+<td><strong>实时化</strong></td>
+</tr>
+<tr>
+<td><strong>话术质量</strong></td>
+<td>依赖个人经验</td>
+<td>基于历史成功案例</td>
+<td><strong>标准化</strong></td>
+</tr>
+<tr>
+<td><strong>方案完整性</strong></td>
+<td>2-3个方案</td>
+<td>3个方案+对比表</td>
+<td><strong>结构化</strong></td>
+</tr>
+<tr>
+<td><strong>经验传承</strong></td>
+<td>留在个人脑中</td>
+<td>自动沉淀到系统</td>
+<td><strong>可复用</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>业务成果</strong>:
+- 💰 节省保证金占用: <strong>5540万</strong> → <strong>3000万</strong>(可释放)
+- ⏱️ 谈判准备效率: 提升 <strong>96%</strong>
+- 👥 新人成长加速: 可直接使用标准化话术应对复杂场景
+- 📚 组织能力提升: 从依赖个人到系统化能力</p>
+<hr />
+<h3 id="_20">适用场景扩展</h3>
+<p>除了股东变更应对,该工具同样适用于:</p>
+<ol>
+<li><strong>资金成本谈判</strong> - 从8.5%降至7.8%的策略设计</li>
+<li><strong>保证金条款谈判</strong> - 多方案对比与灵活调整机制</li>
+<li><strong>风险质疑应对</strong> - 数据拆解与改善趋势证明</li>
+<li><strong>合规施压应对</strong> - 实时预警避免踩红线</li>
+<li><strong>业务量承诺</strong> - 用让步换取业务增长空间</li>
+<li><strong>新机构破冰</strong> - 首次合作的信任建立策略</li>
+</ol>
+<p><strong>关键成功因素</strong>:
+- ✅ 话术来自真实成功案例,而非理论构想
+- ✅ 数据实时查询,避免"拍脑袋"决策
+- ✅ 方案结构化对比,提升专业度
+- ✅ 经验自动沉淀,持续优化迭代</p>
+<hr />
+<h2 id="_21">🤔 总结反思</h2>
+<h3 id="_22">一、项目创新点</h3>
+<ol>
+<li>
+<p><strong>AI+业务深度融合</strong>: 不是简单的工具堆砌，而是深入理解资金商务场景，将AI能力嵌入到实际工作流程中</p>
+</li>
+<li>
+<p><strong>从个人工具到组织能力</strong>: 通过权限体系和数据沉淀，将个人经验转化为组织资产</p>
+</li>
+<li>
+<p><strong>全流程覆盖</strong>: 战前-战中-战后完整闭环，不留管理盲区</p>
+</li>
+<li>
+<p><strong>数据驱动决策</strong>: 用数据说话，减少主观判断，提升决策质量</p>
+</li>
+</ol>
+<h3 id="_23">二、实施挑战</h3>
+<ol>
+<li><strong>数据质量</strong>: Dataphin数据的准确性和及时性直接影响系统价值</li>
+<li>
+<p><strong>应对</strong>: 建立数据校验机制，人工审核关键数据</p>
+</li>
+<li>
+<p><strong>用户习惯</strong>: 从传统工作方式到数字化工具需要适应期</p>
+</li>
+<li>
+<p><strong>应对</strong>: 分阶段推广，先从核心用户试点，逐步扩大范围</p>
+</li>
+<li>
+<p><strong>系统集成</strong>: 与BPM、CRM等企业系统对接存在技术复杂度</p>
+</li>
+<li>
+<p><strong>应对</strong>: 采用标准化接口，分阶段实施，先实现核心功能</p>
+</li>
+<li>
+<p><strong>知识更新</strong>: 话术库和策略需要持续维护和优化</p>
+</li>
+<li><strong>应对</strong>: 建立反馈机制，定期复盘更新，形成闭环</li>
+</ol>
+<h3 id="_24">三、未来展望</h3>
+<ol>
+<li>
+<p><strong>智能化升级</strong>: 引入大语言模型，实现更智能的话术生成和策略建议</p>
+</li>
+<li>
+<p><strong>移动端支持</strong>: 开发移动App，支持外勤场景的实时使用</p>
+</li>
+<li>
+<p><strong>行业扩展</strong>: 将经验复制到其他需要商务谈判的业务场景</p>
+</li>
+<li>
+<p><strong>生态建设</strong>: 打通更多企业系统，形成完整的商务数字化生态</p>
+</li>
+</ol>
+<h3 id="_25">四、关键成功因素</h3>
+<ul>
+<li>✅ <strong>领导支持</strong>: 管理层认可和推动是项目成功的前提</li>
+<li>✅ <strong>用户参与</strong>: 一线商务的反馈和建议至关重要</li>
+<li>✅ <strong>数据基础</strong>: 高质量的数据是系统价值的基石</li>
+<li>✅ <strong>持续迭代</strong>: 快速响应需求，持续优化改进</li>
+<li>✅ <strong>文化建设</strong>: 培养数据驱动和系统化思维的团队文化</li>
+</ul>
+<hr />
+<h2 id="_26">🚀 快速启动</h2>
+<h3 id="_27">前置要求</h3>
+<ul>
+<li>Python 3.10+</li>
+<li>Node.js 18+</li>
+<li>npm 或 yarn</li>
+</ul>
+<h3 id="_28">方式一: 开发模式</h3>
+<h4 id="1">1. 启动后端</h4>
+<pre class="codehilite"><code class="language-bash">cd backend
+pip install -r requirements.txt
+python main.py
+</code></pre>
+
+<p>后端将运行在 <code>http://localhost:8000</code></p>
+<h4 id="2">2. 启动前端</h4>
+<pre class="codehilite"><code class="language-bash">cd frontend
+npm install
+npm run dev
+</code></pre>
+
+<p>前端将运行在 <code>http://localhost:5173</code></p>
+<h4 id="3-demo">3. Demo账号登录</h4>
+<p>系统提供8个Demo账号，可以直接使用工号登录：</p>
+<table>
+<thead>
+<tr>
+<th>工号</th>
+<th>姓名</th>
+<th>角色</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U001</td>
+<td>刘总</td>
+<td>分管负责人</td>
+<td>可查看所有团队数据</td>
+</tr>
+<tr>
+<td>U002</td>
+<td>王部长</td>
+<td>部门负责人</td>
+<td>可查看所有团队数据</td>
+</tr>
+<tr>
+<td>U003</td>
+<td>张组长</td>
+<td>组长</td>
+<td>资金商务一组</td>
+</tr>
+<tr>
+<td>U004</td>
+<td>李商务</td>
+<td>商务</td>
+<td>资金商务一组</td>
+</tr>
+<tr>
+<td>U005</td>
+<td>赵商务</td>
+<td>商务</td>
+<td>资金商务一组</td>
+</tr>
+<tr>
+<td>U006</td>
+<td>陈组长</td>
+<td>组长</td>
+<td>资金商务二组</td>
+</tr>
+<tr>
+<td>U007</td>
+<td>孙商务</td>
+<td>商务</td>
+<td>资金商务二组</td>
+</tr>
+<tr>
+<td>U008</td>
+<td>周商务</td>
+<td>商务</td>
+<td>资金商务二组</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_29">💡 核心功能</h2>
+<h3 id="1-intelligence">1. 战前准备 (Intelligence)</h3>
+<p><strong>功能模块</strong>:
+- 📊 <strong>资方内参报告</strong>: 输入资方名称，3秒生成完整档案
+  - 业务数据：在贷余额、放款规模、排期情况
+  - 运营数据：通过率、审批时长、M3+逾期率
+  - 商务条件：资金成本、保证金比例、合作模式
+  - 谈判建议：3套方案推荐（阶梯式/替代方案/折中方案）</p>
+<ul>
+<li>💬 <strong>话术知识库</strong>: 按场景分类的标准话术</li>
+<li>资金成本谈判</li>
+<li>保证金条款谈判</li>
+<li>风险质疑应对</li>
+<li>合规施压应对</li>
+<li>业务量承诺</li>
+<li>新机构破冰</li>
+</ul>
+<p><strong>使用场景</strong>:
+- 拜访前快速准备资方背景
+- 领导参会前同步完整档案
+- 查询特定场景的标准话术</p>
+<hr />
+<h3 id="2-live-copilot">2. 战中辅助 (Live Copilot)</h3>
+<p><strong>功能模块</strong>:
+- 🎙️ <strong>实时对话记录</strong>: 记录双方发言，形成时间轴
+- 🤖 <strong>0.5秒话术推荐</strong>: 对方发言后，系统自动推荐应对话术
+- 📝 <strong>关键决策点标记</strong>: 自动识别重要承诺和条件变化
+- 🎤 <strong>语音转文字</strong>: 支持录音并实时转写（Demo版模拟）</p>
+<p><strong>使用场景</strong>:
+- 正式谈判现场实时辅助
+- 电话沟通时的话术支持
+- 复杂场景的应对建议</p>
+<hr />
+<h3 id="3-workflow">3. 战后复盘 (Workflow)</h3>
+<p><strong>功能模块</strong>:
+- 📋 <strong>谈判记录管理</strong>: 所有拜访/谈判记录的统一管理
+- 📊 <strong>复盘报告生成</strong>: 自动生成会议纪要和关键决策点
+- ✅ <strong>待办事项追踪</strong>: 谈判后的跟进事项管理
+- 👥 <strong>参会人员登记</strong>: 记录资方人员和我方人员信息</p>
+<p><strong>使用场景</strong>:
+- 谈判结束后的记录沉淀
+- 定期复盘和经验总结
+- 待办事项的跟进管理</p>
+<hr />
+<h3 id="4-team-dashboard">4. 团队看板 (Team Dashboard)</h3>
+<p><strong>功能模块</strong>:
+- 📈 <strong>团队效能分析</strong>: 谈判记录数、待办事项统计
+- 👥 <strong>成员业绩追踪</strong>: 拜访次数、谈判成功率、成本优化
+- 🏦 <strong>资方覆盖情况</strong>: 最后拜访时间、月均拜访频率、关系状态
+- 📊 <strong>场景分布分析</strong>: 各类谈判场景的分布统计</p>
+<p><strong>权限说明</strong>:
+- 商务：只能看到自己的记录
+- 组长：可以看到本组所有成员的数据
+- 部门负责人：可以切换查看不同团队的数据</p>
+<hr />
+<h2 id="_30">📁 项目结构</h2>
+<pre class="codehilite"><code>negotiation_assistant_web/
+├── frontend/                      # React前端
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── Login.jsx          # 登录页面
+│   │   │   ├── Intelligence.jsx   # 战前准备
+│   │   │   ├── LiveCopilot.jsx    # 战中辅助
+│   │   │   ├── Workflow.jsx       # 战后复盘
+│   │   │   └── Dashboard/
+│   │   │       └── TeamDashboard.jsx  # 团队看板
+│   │   ├── components/
+│   │   │   ├── AppLayout.jsx      # 应用布局
+│   │   │   └── PermissionGuard.jsx # 权限守卫
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx    # 认证上下文
+│   │   └── App.jsx                # 主应用
+│   └── package.json
+│
+├── backend/                       # FastAPI后端
+│   ├── main.py                    # 主入口
+│   ├── models.py                  # 数据模型
+│   ├── auth.py                    # 认证授权
+│   ├── database.py                # 数据库(Demo数据)
+│   ├── routes_auth.py             # 认证API
+│   ├── routes_records.py          # 记录管理API
+│   ├── routes_dashboard.py        # 看板API
+│   ├── routes_intelligence.py     # 内参报告API
+│   └── routes_playbook.py         # 话术匹配API
+│
+└── README.md
+</code></pre>
+
+<hr />
+<h2 id="_31">🔧 技术栈</h2>
+<h3 id="_32">前端技术</h3>
+<ul>
+<li><strong>框架</strong>: React 18</li>
+<li><strong>构建工具</strong>: Vite</li>
+<li><strong>路由</strong>: React Router v6</li>
+<li><strong>状态管理</strong>: React Context API + Hooks</li>
+<li><strong>样式</strong>: CSS Modules</li>
+<li><strong>HTTP</strong>: Fetch API</li>
+<li><strong>认证</strong>: JWT Token</li>
+</ul>
+<h3 id="_33">后端技术</h3>
+<ul>
+<li><strong>框架</strong>: FastAPI</li>
+<li><strong>Python</strong>: 3.10+</li>
+<li><strong>数据验证</strong>: Pydantic</li>
+<li><strong>认证</strong>: JWT (python-jose)</li>
+<li><strong>CORS</strong>: fastapi.middleware.cors</li>
+<li><strong>数据存储</strong>: 内存数据库(Demo版)</li>
+</ul>
+<h3 id="_34">权限系统</h3>
+<ul>
+<li><strong>角色层级</strong>: </li>
+<li>EMPLOYEE (商务) &lt; TEAM_LEADER (组长) &lt; DIRECTOR (部门负责人)</li>
+<li><strong>数据隔离</strong>: </li>
+<li>商务只能看到自己的记录</li>
+<li>组长可以看到本组所有记录</li>
+<li>部门负责人可以看到本部门所有记录</li>
+<li><strong>JWT Token</strong>: 包含 user_id, role, team_id, department_id</li>
+</ul>
+<hr />
+<h2 id="api">🔌 API文档</h2>
+<h3 id="1_1">1. 认证相关</h3>
+<h4 id="_35">登录</h4>
+<pre class="codehilite"><code class="language-http">POST /api/auth/login
+Content-Type: application/json
+
+{
+  &quot;user_id&quot;: &quot;U001&quot;
+}
+</code></pre>
+
+<p><strong>响应</strong>:</p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;user&quot;: {
+    &quot;user_id&quot;: &quot;U001&quot;,
+    &quot;name&quot;: &quot;刘总&quot;,
+    &quot;role&quot;: &quot;director&quot;,
+    &quot;team_id&quot;: &quot;dept_001&quot;,
+    &quot;department_id&quot;: &quot;dept_001&quot;
+  },
+  &quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;,
+  &quot;message&quot;: &quot;登录成功&quot;
+}
+</code></pre>
+
+<h4 id="_36">获取当前用户信息</h4>
+<pre class="codehilite"><code class="language-http">GET /api/auth/me
+Authorization: Bearer {token}
+</code></pre>
+
+<hr />
+<h3 id="2_1">2. 资方内参报告</h3>
+<pre class="codehilite"><code class="language-http">POST /api/intelligence/generate
+Content-Type: application/json
+
+{
+  &quot;funder_name&quot;: &quot;中关村银行&quot;
+}
+</code></pre>
+
+<p><strong>响应</strong>:</p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;fund_name&quot;: &quot;中关村银行&quot;,
+  &quot;fund_type&quot;: &quot;银行&quot;,
+  &quot;outstanding_balance&quot;: 8750,
+  &quot;last_month_loan&quot;: 1200,
+  &quot;current_month_plan&quot;: 1500,
+  &quot;approval_rate&quot;: 62.3,
+  &quot;m3_overdue_rate&quot;: 4.8,
+  &quot;avg_approval_days&quot;: 2.8,
+  &quot;funding_cost&quot;: 7.5,
+  &quot;deposit_rate&quot;: 6,
+  &quot;cooperation_mode&quot;: &quot;助贷模式&quot;
+}
+</code></pre>
+
+<hr />
+<h3 id="3">3. 话术匹配</h3>
+<pre class="codehilite"><code class="language-http">POST /api/playbook/match
+Content-Type: application/json
+
+{
+  &quot;user_input&quot;: &quot;保证金必须提到10%&quot;
+}
+</code></pre>
+
+<p><strong>响应</strong>:</p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;script_001&quot;,
+      &quot;scene&quot;: &quot;保证金条款谈判&quot;,
+      &quot;name&quot;: &quot;阶梯式保证金方案&quot;,
+      &quot;content&quot;: &quot;理解评审委员会立场...&quot;,
+      &quot;tips&quot;: &quot;不直接拒绝，提出阶梯方案&quot;
+    }
+  ]
+}
+</code></pre>
+
+<hr />
+<h3 id="4">4. 团队看板</h3>
+<pre class="codehilite"><code class="language-http">GET /api/dashboard/team/{team_id}
+Authorization: Bearer {token}
+</code></pre>
+
+<p><strong>响应</strong>:</p>
+<pre class="codehilite"><code class="language-json">{
+  &quot;overview&quot;: {
+    &quot;totalRecords&quot;: 15,
+    &quot;totalTodos&quot;: 45,
+    &quot;completedTodos&quot;: 30,
+    &quot;pendingTodos&quot;: 15,
+    &quot;totalVisits&quot;: 12,
+    &quot;totalNegotiations&quot;: 8,
+    &quot;successRate&quot;: 75.0,
+    &quot;avgCostReduction&quot;: 0.35
+  },
+  &quot;member_performance&quot;: [...],
+  &quot;funder_coverage&quot;: [...],
+  &quot;scene_distribution&quot;: {...},
+  &quot;monthly_trend&quot;: [...]
+}
+</code></pre>
+
+<hr />
+<h2 id="_37">🐛 已知问题</h2>
+<ol>
+<li>⚠️ 当前使用内存数据库，重启后数据丢失</li>
+<li>⚠️ 需要接入真实Dataphin数据源</li>
+<li>⚠️ 话术匹配算法需要进一步优化</li>
+<li>⚠️ 语音转写功能为Demo模拟，需要接入真实ASR服务</li>
+</ol>
+<hr />
+<h2 id="_38">📝 更新日志</h2>
+<h3 id="2026-02-11">2026-02-11</h3>
+<ul>
+<li>✅ 完成用户认证和权限管理系统</li>
+<li>JWT Token认证</li>
+<li>三级角色权限（商务/组长/部门负责人）</li>
+<li>数据隔离和权限守卫</li>
+<li>✅ 完成团队看板功能</li>
+<li>团队效能分析</li>
+<li>成员业绩追踪</li>
+<li>资方覆盖情况</li>
+<li>场景分布统计</li>
+<li>✅ 完成战后复盘功能</li>
+<li>谈判记录管理</li>
+<li>待办事项追踪</li>
+<li>参会人员登记</li>
+<li>✅ 更新UI文案</li>
+<li>战前准备：资方基本信息、相关测算、谈判策略</li>
+<li>战中辅助：实时谈判辅助</li>
+<li>✅ 完善README文档</li>
+<li>添加项目背景与痛点</li>
+<li>添加目标价值说明</li>
+<li>完善技术文档</li>
+</ul>
+<h3 id="2026-02-10">2026-02-10</h3>
+<ul>
+<li>✅ 完成所有三个核心页面</li>
+<li>Intelligence.jsx (战前准备)</li>
+<li>LiveCopilot.jsx (战中辅助)</li>
+<li>Workflow.jsx (战后复盘)</li>
+<li>✅ 实现统一导航系统</li>
+<li>✅ 完整样式系统</li>
+<li>✅ 前端工程配置</li>
+</ul>
+<hr />
+<h2 id="_39">🤝 贡献指南</h2>
+<ol>
+<li>Fork项目</li>
+<li>创建功能分支 (<code>git checkout -b feature/AmazingFeature</code>)</li>
+<li>提交代码 (<code>git commit -m 'Add some AmazingFeature'</code>)</li>
+<li>推送到分支 (<code>git push origin feature/AmazingFeature</code>)</li>
+<li>发起Pull Request</li>
+</ol>
+<hr />
+<h2 id="_40">📞 联系方式</h2>
+<ul>
+<li><strong>项目负责人</strong>: 资金商务团队</li>
+<li><strong>技术支持</strong>: 提Issue或联系开发团队</li>
+</ul>
+<hr />
+<p><strong>最后更新</strong>: 2026-02-11<br />
+<strong>版本</strong>: v0.2.0 (权限管理版)</p>
+        <div class="footer">
+            <p>
+                <strong>最后更新</strong>: 2026-02-11 | 
+                <strong>版本</strong>: v0.2.0 | 
+                <a href="https://github.com/Galirischen/negotiation_assistant_web" target="_blank">📂 GitHub仓库</a>
+            </p>
+            <p style="margin-top: 10px;">
+                © 2026 资金商务团队 | Generated by Claude Code
+            </p>
+        </div>
+    </div>
+</body>
+</html>
