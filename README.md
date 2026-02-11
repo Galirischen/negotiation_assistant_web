@@ -2,9 +2,9 @@
 
 > 基于MCP的AI谈判支持系统 - 让每一次外勤都成为数字资产，让每一次博弈都有数智最优解
 
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/YOUR_USERNAME/negotiation_assistant_web)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/Galirischen/negotiation_assistant_web)
 [![Demo](https://img.shields.io/badge/Demo-Online-success?logo=react)](http://localhost:5173)
-[![Version](https://img.shields.io/badge/version-v0.2.0-orange)](https://github.com/YOUR_USERNAME/negotiation_assistant_web/releases)
+[![Version](https://img.shields.io/badge/version-v0.2.0-orange)](https://github.com/Galirischen/negotiation_assistant_web/releases)
 
 ---
 
